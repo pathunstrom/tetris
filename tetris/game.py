@@ -48,7 +48,8 @@ class Tetromino(object):
         self.rotation += -1
 
     def left(self, vel=1):
-        self.x = self.x - vel if self.x - vel >= 0 else 0
+        edge = min((x[0] for x in I['position'][self.rotation]))
+        self.x = self.x - vel if self.x - vel + edge >= 0 else 0 - edge
 
     def right(self, vel=1):
         self.x = self.x + vel if self.x + vel <= self.edge else self.edge

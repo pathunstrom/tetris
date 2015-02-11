@@ -47,7 +47,7 @@ def test_tableau():
     print "Tableau tests passed"
 
 
-def test_tetromino():
+def test_tetromino_I():
     try:
         table = game.Tableau()
         tetromino = game.Tetromino(game.I, table)
@@ -62,15 +62,18 @@ def test_tetromino():
         assert tetromino.x == 2
         tetromino.left(3)
         assert tetromino.x == 0
-        tetromino.right()
-        assert tetromino.x == 1
-        tetromino.right(2)
-        assert tetromino.x == 3
+        tetromino.clockwise()
+        tetromino.left()
+        assert tetromino.x == -1
+        tetromino.left()
+        assert tetromino.x == -2
+        tetromino.left()
+        assert tetromino.x == -2
     except Exception:
-        print "Tetromino test failed"
+        print "Tetromino I test failed"
         logging.exception("Tetromino test failed")
         return True
-    print "Tetromino tests passed"
+    print "Tetromino I tests passed"
 
 
 def test_speed(function1, function2, loops=1000, *args, **kwargs):
@@ -98,7 +101,7 @@ def test_speed(function1, function2, loops=1000, *args, **kwargs):
 
 
 if __name__ == "__main__":
-    tests = [test_constants, test_node, test_tableau, test_tetromino]
+    tests = [test_constants, test_node, test_tableau, test_tetromino_I]
     tests_start_time = time.time()
     success = 0
     failure = 0
